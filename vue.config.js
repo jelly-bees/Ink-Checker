@@ -15,6 +15,7 @@ module.exports = {
         }
     },
     publicPath: './',
+    outputDir: path.resolve(__dirname, 'docs'),
     configureWebpack: {
         output: {
             chunkFilename: '[name].js?id=[chunkhash]',
