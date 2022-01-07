@@ -2,7 +2,7 @@
     <div class="allergy-container">
         <b>Colors</b>
         <select id="colors-dropdown" name="color">
-            <option v-for="color in Object.keys(colors)" :key="color" :value="color" :style="{'border-left':colors[color].hex 6px solid, 'padding':0.5rem}">{{color}}</option>
+            <option v-for="color in Object.keys(colors)" :key="color" :value="color" :style="{'border-left':6px solid colors[color].hex, 'padding':0.5rem}">{{color}}</option>
         </select>
         <div class="color-entry" v-for="color in Object.keys(colors)" :key="color">
             Color: {{color}}<br/>
