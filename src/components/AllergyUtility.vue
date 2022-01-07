@@ -18,6 +18,7 @@
             <template #default="{ item }">
                 <div class="option-entry">
                     <div class="option-sample"
+                        :class="{'option-border':colors[item.value].hex==='#ffffff'}"
                         :style="{'background-color': colors[item.value].hex}">
                     </div>
                     <div class="option-text">
@@ -130,6 +131,10 @@ export default {
             height: 1rem;
             margin: 0.5rem;
             width: 1rem;
+            
+            &.option-border {
+                border: 1px solid black;
+            }
         }
 
         .option-text {
