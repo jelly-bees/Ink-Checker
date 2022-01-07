@@ -1,0 +1,910 @@
+[
+  {
+    "Color": "Aged Parchment",
+    "Hex Value": "#bba18a"
+  },
+  {
+    "Color": "Almond",
+    "Hex Value": "#B69E7D"
+  },
+  {
+    "Color": "Antique Fuchsia",
+    "Hex Value": "#77507d"
+  },
+  {
+    "Color": "Aquamarine",
+    "Hex Value": "#0cb29e"
+  },
+  {
+    "Color": "Ash Brown",
+    "Hex Value": "#82492c"
+  },
+  {
+    "Color": "Autumn Leaves",
+    "Hex Value": "#c27d38"
+  },
+  {
+    "Color": "Avocado",
+    "Hex Value": "#848e38"
+  },
+  {
+    "Color": "Baby Blue",
+    "Hex Value": "#3eabe3"
+  },
+  {
+    "Color": "Bay Gray",
+    "Hex Value": "#4e7270"
+  },
+  {
+    "Color": "Bermuda Blue",
+    "Hex Value": "#3bc1ca"
+  },
+  {
+    "Color": "Blackbird",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Blue Concentrate",
+    "Hex Value": "#1f293b"
+  },
+  {
+    "Color": "Blue Ribbon",
+    "Hex Value": "#0c92d1"
+  },
+  {
+    "Color": "Blue Ridge",
+    "Hex Value": "#3580a0"
+  },
+  {
+    "Color": "Bondo",
+    "Hex Value": "#cdcbd0"
+  },
+  {
+    "Color": "Bright Fawn",
+    "Hex Value": "#E6CEA6"
+  },
+  {
+    "Color": "Bright Orange",
+    "Hex Value": "#f36e23"
+  },
+  {
+    "Color": "Bright Yellow",
+    "Hex Value": "#fdcd45"
+  },
+  {
+    "Color": "Brown",
+    "Hex Value": "#7c2a1c"
+  },
+  {
+    "Color": "Bruised Ego",
+    "Hex Value": "#462f27"
+  },
+  {
+    "Color": "Buddha Gold",
+    "Hex Value": "#b97c22"
+  },
+  {
+    "Color": "Bumble Bee",
+    "Hex Value": "#fbd528"
+  },
+  {
+    "Color": "Burning Wood",
+    "Hex Value": "#9e4819"
+  },
+  {
+    "Color": "Burnt Orange",
+    "Hex Value": "#a35030"
+  },
+  {
+    "Color": "Caffeine Rush",
+    "Hex Value": "#624630"
+  },
+  {
+    "Color": "California Orange",
+    "Hex Value": "#c64525"
+  },
+  {
+    "Color": "Caramel",
+    "Hex Value": "#9e6327"
+  },
+  {
+    "Color": "Chrysanthemum Orange",
+    "Hex Value": "#e25220"
+  },
+  {
+    "Color": "Classic Emerald",
+    "Hex Value": "#005540"
+  },
+  {
+    "Color": "Clay Gray",
+    "Hex Value": "#676d63"
+  },
+  {
+    "Color": "Coal",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Cocoa Bean",
+    "Hex Value": "#2f2c27"
+  },
+  {
+    "Color": "Cold Steel",
+    "Hex Value": "#4f5055"
+  },
+  {
+    "Color": "Cold Tears",
+    "Hex Value": "#d7f2fd"
+  },
+  {
+    "Color": "Cool Dark Gray",
+    "Hex Value": "#1a2e35"
+  },
+  {
+    "Color": "Cool Light Gray",
+    "Hex Value": "#7b9da7"
+  },
+  {
+    "Color": "Cool Medium Gray",
+    "Hex Value": "#3c555c"
+  },
+  {
+    "Color": "Coral Green",
+    "Hex Value": "#00a36e"
+  },
+  {
+    "Color": "Cotton Candy",
+    "Hex Value": "#d480b4"
+  },
+  {
+    "Color": "Crimson Red",
+    "Hex Value": "#89171f"
+  },
+  {
+    "Color": "Cuda Purple",
+    "Hex Value": "#4f2d81"
+  },
+  {
+    "Color": "Dark Brown",
+    "Hex Value": "#46251c"
+  },
+  {
+    "Color": "Dark Chestnut",
+    "Hex Value": "#322b1b"
+  },
+  {
+    "Color": "Dark Cobalt",
+    "Hex Value": "#243056"
+  },
+  {
+    "Color": "Darker Gray Wash",
+    "Hex Value": "#585a5b"
+  },
+  {
+    "Color": "Darkest Gray Wash",
+    "Hex Value": "#383a3b"
+  },
+  {
+    "Color": "Dark Gray Wash",
+    "Hex Value": "#818286"
+  },
+  {
+    "Color": "Dark Ochre",
+    "Hex Value": "#a28050"
+  },
+  {
+    "Color": "Dark Purple",
+    "Hex Value": "#2e2961"
+  },
+  {
+    "Color": "Dark Red",
+    "Hex Value": "#96191d"
+  },
+  {
+    "Color": "Daruma Red",
+    "Hex Value": "#b72025"
+  },
+  {
+    "Color": "Dead White",
+    "Hex Value": "#ffffff"
+  },
+  {
+    "Color": "Decomposed Skin",
+    "Hex Value": "#48372d"
+  },
+  {
+    "Color": "Deep Red",
+    "Hex Value": "#482016"
+  },
+  {
+    "Color": "Deep Sea",
+    "Hex Value": "#077282"
+  },
+  {
+    "Color": "Devilish Red",
+    "Hex Value": "#9d0b0e"
+  },
+  {
+    "Color": "Dirty Money",
+    "Hex Value": "#27544c"
+  },
+  {
+    "Color": "Dirty Scarlet",
+    "Hex Value": "#561f22"
+  },
+  {
+    "Color": "Dried Blood",
+    "Hex Value": "#24271e"
+  },
+  {
+    "Color": "Dusky Mauve",
+    "Hex Value": "#6a2a2a"
+  },
+  {
+    "Color": "Dusty Blue",
+    "Hex Value": "#2e85a3"
+  },
+  {
+    "Color": "Dusty Rose",
+    "Hex Value": "#9c2545"
+  },
+  {
+    "Color": "Electric Raspberry",
+    "Hex Value": "#a22275"
+  },
+  {
+    "Color": "Enchanted Lilac",
+    "Hex Value": "#7e78a6"
+  },
+  {
+    "Color": "Eternal Orange",
+    "Hex Value": "#eb8900"
+  },
+  {
+    "Color": "Exhaust",
+    "Hex Value": "#8cb0d4"
+  },
+  {
+    "Color": "Fair Maiden",
+    "Hex Value": "#f4e9e3"
+  },
+  {
+    "Color": "Flame Orange",
+    "Hex Value": "#f48222"
+  },
+  {
+    "Color": "Flamingo Pink",
+    "Hex Value": "#da5396"
+  },
+  {
+    "Color": "Flesh To Death",
+    "Hex Value": "#d89c80"
+  },
+  {
+    "Color": "Flesh Tone",
+    "Hex Value": "#d8a8a6"
+  },
+  {
+    "Color": "Forest",
+    "Hex Value": "#324824"
+  },
+  {
+    "Color": "Freshly Dead",
+    "Hex Value": "#a98b73"
+  },
+  {
+    "Color": "Frostbite Blue",
+    "Hex Value": "#5b8e9f"
+  },
+  {
+    "Color": "Fuchsia",
+    "Hex Value": "#955ba5"
+  },
+  {
+    "Color": "Fuji Blue",
+    "Hex Value": "#0DADD1"
+  },
+  {
+    "Color": "Galaxy Blue",
+    "Hex Value": "#172a4b"
+  },
+  {
+    "Color": "Gangrene",
+    "Hex Value": "#4c5128"
+  },
+  {
+    "Color": "Geisha Pink",
+    "Hex Value": "#cd1f38"
+  },
+  {
+    "Color": "Georgia Peach",
+    "Hex Value": "#fab490"
+  },
+  {
+    "Color": "Golden Yellow",
+    "Hex Value": "#faad37"
+  },
+  {
+    "Color": "Graffiti Green",
+    "Hex Value": "#4e9e45"
+  },
+  {
+    "Color": "Granny Smith Green",
+    "Hex Value": "#4f7c39"
+  },
+  {
+    "Color": "Grape Leaf",
+    "Hex Value": "#6c6b2b"
+  },
+  {
+    "Color": "Grass Green",
+    "Hex Value": "#0e7651"
+  },
+  {
+    "Color": "Graveside Dark",
+    "Hex Value": "#204571"
+  },
+  {
+    "Color": "Graveside Light",
+    "Hex Value": "#5c57a7"
+  },
+  {
+    "Color": "Gray",
+    "Hex Value": "#686c6f"
+  },
+  {
+    "Color": "Green Concentrate",
+    "Hex Value": "#203223"
+  },
+  {
+    "Color": "Green Dragon",
+    "Hex Value": "#10572d"
+  },
+  {
+    "Color": "Green Slime",
+    "Hex Value": "#536f32"
+  },
+  {
+    "Color": "GTO Teal",
+    "Hex Value": "#005d6c"
+  },
+  {
+    "Color": "Han Purple",
+    "Hex Value": "#3d1063"
+  },
+  {
+    "Color": "Harvest Gold",
+    "Hex Value": "#daa229"
+  },
+  {
+    "Color": "Honeydew",
+    "Hex Value": "#a8c970"
+  },
+  {
+    "Color": "Hot Chocolate",
+    "Hex Value": "#847272"
+  },
+  {
+    "Color": "Hot Pink",
+    "Hex Value": "#cf1f43"
+  },
+  {
+    "Color": "Hot Steel",
+    "Hex Value": "#e25220"
+  },
+  {
+    "Color": "Immovable Dark",
+    "Hex Value": "#115562"
+  },
+  {
+    "Color": "Immovable Light",
+    "Hex Value": "#60e1cd"
+  },
+  {
+    "Color": "Immovable Medium",
+    "Hex Value": "#0d8681"
+  },
+  {
+    "Color": "Imperial Jade",
+    "Hex Value": "#0d9447"
+  },
+  {
+    "Color": "Imperial Violet",
+    "Hex Value": "#343087"
+  },
+  {
+    "Color": "Incense Brown",
+    "Hex Value": "#663926"
+  },
+  {
+    "Color": "Indigo Dye",
+    "Hex Value": "#221435"
+  },
+  {
+    "Color": "Infected Skin",
+    "Hex Value": "#5b3b15"
+  },
+  {
+    "Color": "Ivory",
+    "Hex Value": "#c5b2a3"
+  },
+  {
+    "Color": "Jade",
+    "Hex Value": "#537b60"
+  },
+  {
+    "Color": "Jungle Green",
+    "Hex Value": "#337839"
+  },
+  {
+    "Color": "Lantern Yellow",
+    "Hex Value": "#ffc80b"
+  },
+  {
+    "Color": "Lavender",
+    "Hex Value": "#8678b6"
+  },
+  {
+    "Color": "Light Chestnut",
+    "Hex Value": "#85633d"
+  },
+  {
+    "Color": "Light Gray Wash",
+    "Hex Value": "#d3d4d6"
+  },
+  {
+    "Color": "Light Magenta",
+    "Hex Value": "#be388d"
+  },
+  {
+    "Color": "Lightning Yellow",
+    "Hex Value": "#fcc429"
+  },
+  {
+    "Color": "Light Peach",
+    "Hex Value": "#e1b183"
+  },
+  {
+    "Color": "Light Purple",
+    "Hex Value": "#6b5ba6"
+  },
+  {
+    "Color": "Light Red",
+    "Hex Value": "#ca2917"
+  },
+  {
+    "Color": "Lime Green",
+    "Hex Value": "#14592d"
+  },
+  {
+    "Color": "Lining Black",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Lipstick Red",
+    "Hex Value": "#aa1f26"
+  },
+  {
+    "Color": "Longhorn Brown",
+    "Hex Value": "#ad6827"
+  },
+  {
+    "Color": "Lotus Tip",
+    "Hex Value": "#be2283"
+  },
+  {
+    "Color": "Magenta",
+    "Hex Value": "#4e142d"
+  },
+  {
+    "Color": "Medium Chestnut",
+    "Hex Value": "#45331b"
+  },
+  {
+    "Color": "Medium Gray Wash",
+    "Hex Value": "#a8a9ad"
+  },
+  {
+    "Color": "Mint Green",
+    "Hex Value": "#7cccc1"
+  },
+  {
+    "Color": "Mississippi Mud",
+    "Hex Value": "#653426"
+  },
+  {
+    "Color": "Mocha",
+    "Hex Value": "#70462e"
+  },
+  {
+    "Color": "Momo Peach",
+    "Hex Value": "#fab49a"
+  },
+  {
+    "Color": "Moulin Rouge",
+    "Hex Value": "#a5583e"
+  },
+  {
+    "Color": "Mudflap Brown",
+    "Hex Value": "#7b6130"
+  },
+  {
+    "Color": "Mudslide",
+    "Hex Value": "#685a3f"
+  },
+  {
+    "Color": "Mulberry",
+    "Hex Value": "#672555"
+  },
+  {
+    "Color": "Natural Fawn",
+    "Hex Value": "#decda7"
+  },
+  {
+    "Color": "Ninja Black",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Nuclear Green",
+    "Hex Value": "#87b23f"
+  },
+  {
+    "Color": "Nude Blush",
+    "Hex Value": "#d69871"
+  },
+  {
+    "Color": "Ochre",
+    "Hex Value": "#d0a850"
+  },
+  {
+    "Color": "Off White",
+    "Hex Value": "#f2edc3"
+  },
+  {
+    "Color": "Old Gold",
+    "Hex Value": "#a17129"
+  },
+  {
+    "Color": "Old Orchid",
+    "Hex Value": "#3a1b20"
+  },
+  {
+    "Color": "Olive",
+    "Hex Value": "#444420"
+  },
+  {
+    "Color": "Orange",
+    "Hex Value": "#d45836"
+  },
+  {
+    "Color": "Pale Mauve",
+    "Hex Value": "#a47667"
+  },
+  {
+    "Color": "Papaya",
+    "Hex Value": "#9f4c46"
+  },
+  {
+    "Color": "Peachy Flesh",
+    "Hex Value": "#dba26b"
+  },
+  {
+    "Color": "Peacock Blue",
+    "Hex Value": "#1573a7"
+  },
+  {
+    "Color": "Peony Purple",
+    "Hex Value": "#64173b"
+  },
+  {
+    "Color": "Pepto Pink",
+    "Hex Value": "#d05371"
+  },
+  {
+    "Color": "Perfect Black",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Perfect White",
+    "Hex Value": "#ffffff"
+  },
+  {
+    "Color": "Periwinkle",
+    "Hex Value": "#3668a7"
+  },
+  {
+    "Color": "Pink",
+    "Hex Value": "#ef7fa5"
+  },
+  {
+    "Color": "Plague Brown",
+    "Hex Value": "#ad8f5b"
+  },
+  {
+    "Color": "Plum",
+    "Hex Value": "#2c1712"
+  },
+  {
+    "Color": "Plush Blush",
+    "Hex Value": "#cb857d"
+  },
+  {
+    "Color": "Port Wine",
+    "Hex Value": "#3b1918"
+  },
+  {
+    "Color": "Purple Concentrate",
+    "Hex Value": "#2a1e36"
+  },
+  {
+    "Color": "Putrid Brown",
+    "Hex Value": "#7f727b"
+  },
+  {
+    "Color": "Raining Sky",
+    "Hex Value": "#72abc6"
+  },
+  {
+    "Color": "Rawhide",
+    "Hex Value": "#a95c48"
+  },
+  {
+    "Color": "Red-Violet",
+    "Hex Value": "#572668"
+  },
+  {
+    "Color": "Red Cross",
+    "Hex Value": "#a11c21"
+  },
+  {
+    "Color": "Renaissance",
+    "Hex Value": "#a05b4b"
+  },
+  {
+    "Color": "Rich Dark Flesh",
+    "Hex Value": "#89401d"
+  },
+  {
+    "Color": "Rich Espresso",
+    "Hex Value": "#4a3931"
+  },
+  {
+    "Color": "Rich Medium Flesh",
+    "Hex Value": "#b25e32"
+  },
+  {
+    "Color": "Rich Turquoise",
+    "Hex Value": "#0d7f80"
+  },
+  {
+    "Color": "Rigor Mortis",
+    "Hex Value": "#7e99a4"
+  },
+  {
+    "Color": "Rising Red",
+    "Hex Value": "#A72122"
+  },
+  {
+    "Color": "Roadrunner Green",
+    "Hex Value": "#cad82b"
+  },
+  {
+    "Color": "Robin Egg",
+    "Hex Value": "#15b2d3"
+  },
+  {
+    "Color": "Rose Satin",
+    "Hex Value": "#c8715e"
+  },
+  {
+    "Color": "Ruby Red",
+    "Hex Value": "#6a0c1e"
+  },
+  {
+    "Color": "Rust",
+    "Hex Value": "#a14d28"
+  },
+  {
+    "Color": "Rusty Red",
+    "Hex Value": "#662b2d"
+  },
+  {
+    "Color": "Sable",
+    "Hex Value": "#59392e"
+  },
+  {
+    "Color": "Sage",
+    "Hex Value": "#788f41"
+  },
+  {
+    "Color": "Sakura Pink",
+    "Hex Value": "#e66a8e"
+  },
+  {
+    "Color": "Salmon",
+    "Hex Value": "#aa3a2e"
+  },
+  {
+    "Color": "Sandstone",
+    "Hex Value": "#e6a160"
+  },
+  {
+    "Color": "Sandy Beige",
+    "Hex Value": "#d5b896"
+  },
+  {
+    "Color": "Seafoam",
+    "Hex Value": "#79bb8b"
+  },
+  {
+    "Color": "Sea Shell",
+    "Hex Value": "#cf9388"
+  },
+  {
+    "Color": "Sepia Dark",
+    "Hex Value": "#744c19"
+  },
+  {
+    "Color": "Sepia Light",
+    "Hex Value": "#c5ba9c"
+  },
+  {
+    "Color": "Sepia Medium",
+    "Hex Value": "#a77a37"
+  },
+  {
+    "Color": "Sepia Shade",
+    "Hex Value": "#433727"
+  },
+  {
+    "Color": "Seven Seas",
+    "Hex Value": "#364420"
+  },
+  {
+    "Color": "Shamrock",
+    "Hex Value": "#1d582c"
+  },
+  {
+    "Color": "Silk White",
+    "Hex Value": "#ffffff"
+  },
+  {
+    "Color": "Sky Blue",
+    "Hex Value": "#2386c9"
+  },
+  {
+    "Color": "Slate Blue",
+    "Hex Value": "#064266"
+  },
+  {
+    "Color": "Smoke",
+    "Hex Value": "#6e8dac"
+  },
+  {
+    "Color": "Snowflake",
+    "Hex Value": "#d3eef9"
+  },
+  {
+    "Color": "Solid Gold",
+    "Hex Value": "#fdb016"
+  },
+  {
+    "Color": "Southwest Blue",
+    "Hex Value": "#008a97"
+  },
+  {
+    "Color": "Spearmint",
+    "Hex Value": "#1b9b48"
+  },
+  {
+    "Color": "Spice",
+    "Hex Value": "#b0673c"
+  },
+  {
+    "Color": "Sunflower",
+    "Hex Value": "#fbbe27"
+  },
+  {
+    "Color": "Sunshine",
+    "Hex Value": "#ffd401"
+  },
+  {
+    "Color": "Sunstroke",
+    "Hex Value": "#fec763"
+  },
+  {
+    "Color": "Tangerine",
+    "Hex Value": "#dd373b"
+  },
+  {
+    "Color": "Terracotta",
+    "Hex Value": "#b75814"
+  },
+  {
+    "Color": "Tibetan Red",
+    "Hex Value": "#6e230e"
+  },
+  {
+    "Color": "Triple Black",
+    "Hex Value": "#000000"
+  },
+  {
+    "Color": "Tropical Teal",
+    "Hex Value": "#1b908a"
+  },
+  {
+    "Color": "True Blue",
+    "Hex Value": "#0a5191"
+  },
+  {
+    "Color": "True Gold",
+    "Hex Value": "#f48221"
+  },
+  {
+    "Color": "Turquoise",
+    "Hex Value": "#155f68"
+  },
+  {
+    "Color": "Undead Red",
+    "Hex Value": "#50241b"
+  },
+  {
+    "Color": "Vette Red",
+    "Hex Value": "#a81c37"
+  },
+  {
+    "Color": "Vintage Wine",
+    "Hex Value": "#5d3128"
+  },
+  {
+    "Color": "Vivid Pink",
+    "Hex Value": "#be1c75"
+  },
+  {
+    "Color": "Warm Beige",
+    "Hex Value": "#d7b89c"
+  },
+  {
+    "Color": "Warm Dark Gray",
+    "Hex Value": "#2c2930"
+  },
+  {
+    "Color": "Warm Light Gray",
+    "Hex Value": "#716d6e"
+  },
+  {
+    "Color": "Warm Medium Gray",
+    "Hex Value": "#4e4c51"
+  },
+  {
+    "Color": "Weathered Leather",
+    "Hex Value": "#d89c80"
+  },
+  {
+    "Color": "Whiskey Barrel",
+    "Hex Value": "#ce9c77"
+  },
+  {
+    "Color": "White",
+    "Hex Value": "#ffffff"
+  },
+  {
+    "Color": "White Knight",
+    "Hex Value": "#ffffff"
+  },
+  {
+    "Color": "Wild Orchid",
+    "Hex Value": "#2d173d"
+  },
+  {
+    "Color": "Wine Berry",
+    "Hex Value": "#46475c"
+  },
+  {
+    "Color": "Yellow Stone",
+    "Hex Value": "#fcb712"
+  },
+  {
+    "Color": "Zane Grey",
+    "Hex Value": "#666f78"
+  }
+]
