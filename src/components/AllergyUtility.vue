@@ -1,5 +1,11 @@
 <template>
     <div class="allergy-container">
+        <br/>
+        <b>Eternal Ink Allergy Checker</b>
+        <br/>
+        <br/>
+        Select a Color:
+        <br/>
 
         <!-- Fancy dropdown template -->
         <el-select-v2
@@ -18,6 +24,7 @@
             <template #default="{ item }">
                 <div class="option-entry">
                     <div class="option-sample"
+                        :class="{'option-border':colors[item.value].hex==='#ffffff'}"
                         :style="{'background-color': colors[item.value].hex}">
                     </div>
                     <div class="option-text">
@@ -27,12 +34,41 @@
             </template>
         </el-select-v2>
 
-        <div class="dropdown-tester"
+        <br/>
+
+        <div class="dropdown-result"
             v-if="selectedColor">
-            Selected color is: {{selectedColor}}<br/>
-            Pigments: {{colors[selectedColor].pigments}}<br/>
-            Hex: {{colors[selectedColor].hex}}<br/>
+            <div class="name-container">
+                <div class="option-sample"
+                    :class="{'option-border':colors[selectedColor].hex==='#ffffff'}"
+                    :style="{'background-color': colors[selectedColor].hex}">
+                </div>
+                <div class="name-container-2">
+                    <b>{{selectedColor}}</b> contains the following pigments:<br/>
+                </div>
+            </div>
+            <ul>
+                <li v-for="pigment in colors[selectedColor].pigments"
+                    :key="pigment" :value="pigment">
+                    C.I. #{{pigment}} (
+                    <span v-if="selectedColor && colors[selectedColor].pigments.includes(pigment)">
+                        {{pigmentAliases[pigment].join(' / ')}})
+                    </span>
+                </li>
+            </ul>
+            <div class="definite-avoid">
+                <b>Definitely Avoid</b> (Contains all the above pigments):
+                <ul>
+                    <div v-for="color in Object.keys(colors)"
+                        :key="color" :value="color">
+                        <li v-if="colors[color].pigments.join(' / ').includes(colors[selectedColor].pigments.join(' / ')) && color !== selectedColor">
+                            {{color}}
+                        </li>
+                    </div>
+                </ul>
+            </div>
         </div>
+
 
         <!-- Old dropdown code for reference, can delete -->
         <!--select id="colors-dropdown" name="color">
@@ -51,17 +87,6 @@
             Pigments: {{colors[color].pigments}}<br/>
             Hex: {{colors[color].hex}}<br/>
         </div-->
-
-        <!-- Prints out pigment data we're working with, delete later -->
-        <b v-if="selectedColor">Pigment Aliases</b>
-        <div v-for="pigment in Object.keys(pigmentAliases)"
-            :key="pigment">
-            <div class="pigment-entry"
-                v-if="selectedColor && colors[selectedColor].pigments.includes(pigment)">
-                Pigment C.I. #{{pigment}}<br/>
-                Alias(es): {{pigmentAliases[pigment]}}<br/>
-            </div>
-        </div>
 
     </div>
 </template>
@@ -120,27 +145,45 @@ export default {
     width: 30rem;
 }
 
+.option-sample {
+    border-radius: 0.25rem;
+    height: 1.125rem;
+    margin: 0.5rem;
+    width: 1.125rem;
+
+    &.option-border {
+        border: 1px solid black;
+        height: calc(1.125rem - 2px);
+        width: calc(1.125rem - 2px);
+    }
+}
+
 .ink-dropdown-options {
     .option-entry {
         display: flex !important;
         flex-direction: row !important;
 
-        .option-sample {
-            border-radius: 0.25rem;
-            height: 1rem;
-            margin: 0.5rem;
-            width: 1rem;
-        }
-
         .option-text {
+            font-family: arial;
             font-size: 1rem;
             margin-left: 0.5rem;
+            margin-top: 1px;
         }
     }
 }
 
-.dropdown-tester {
+.dropdown-result {
     margin: 0 1rem 1rem 1rem;
+}
+
+.name-container {
+    display:flex;
+    flex-direction:row;
+    margin: 1rem;
+}
+
+.name-container-2 {
+    margin: 0.5rem;
 }
 
 .color-entry,
