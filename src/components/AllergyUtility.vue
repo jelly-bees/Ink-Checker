@@ -56,22 +56,45 @@
                         </span>
                     </div>
                 </div>
-                <div class="avoid-list"
-                    v-if="getDefinitelyAvoid(selectedColor).length">
-                    <b>Definitely Avoid</b> (Contains all the above pigments):
-                    <div class="avoid-list-inner">
-                        <div class="avoid-entry"
-                            v-for="color in getDefinitelyAvoid(selectedColor)"
+
+                <!-- Inks to DEFINITELY avoid -->
+                <div class="ink-list"
+                    v-if="getDefinitelyAvoid().length">
+                    <b>Definitely Avoid</b> (Contains all of the above pigments):
+                    <div class="ink-list-inner">
+                        <div class="ink-entry"
+                            v-for="color in getDefinitelyAvoid()"
                             :key="color" :value="color">
-                            <drop class="avoid-icon"
+                            <drop class="ink-icon"
                                 :class="{'drop-border': inks[color].hex==='#ffffff'}"
                                 :style="{'fill': inks[color].hex}" />
                             {{color}}
                         </div>
                     </div>
                 </div>
-                <div class="avoid-list" v-else>
+                <div class="ink-list" v-else>
                     No known inks share
+                    <b>all {{inks[selectedColor].pigments.length}}</b>
+                    of these pigments.
+                </div>
+
+                <!-- Completely SAFE inks -->
+                <div class="ink-list"
+                    v-if="getSafe().length">
+                    <b>Safe Inks</b> (Contains none of the above pigments):
+                    <div class="ink-list-inner">
+                        <div class="ink-entry"
+                            v-for="color in getSafe()"
+                            :key="color" :value="color">
+                            <drop class="ink-icon"
+                                :class="{'drop-border': inks[color].hex==='#ffffff'}"
+                                :style="{'fill': inks[color].hex}" />
+                            {{color}}
+                        </div>
+                    </div>
+                </div>
+                <div class="ink-list" v-else>
+                    No known inks lack all
                     <b>all {{inks[selectedColor].pigments.length}}</b>
                     of these pigments.
                 </div>
@@ -133,12 +156,12 @@ export default {
         getDefinitelyAvoid() {
             const mainPigments = this.inks[this.selectedColor].pigments;
 
-            // Iterate over all color names and return a filtered list of all
+            // Iterate over all ink names and return a filtered list of all
             // that contain the above pigments.
             // "filter()" expects a boolean return.
             return Object.keys(this.inks).filter((i) => {
 
-                // Make sure the color itself isn't included
+                // Make sure the ink itself isn't included
                 if (i === this.selectedColor) {
                     return false;
                 }
@@ -149,8 +172,8 @@ export default {
                 // Assume a pigment set match until it isn't
                 let isMatch = true;
 
-                // Iterate over every pigment in the selected ("main") color
-                // As soon as a "sub" color's pigment isn't found,
+                // Iterate over every pigment in the selected ("main") ink
+                // As soon as a "sub" ink's pigment isn't found,
                 // isMatch is false, and "every()" will stop
                 mainPigments.every((mainPigment) => {
                     if (!subPigments.includes(mainPigment)) {
@@ -160,8 +183,27 @@ export default {
                     return isMatch;
                 });
 
-                // Tell the filtering function if this color's pigments
+                // Tell the filtering function if this ink's pigments
                 // are a match or not
+                return isMatch;
+            });
+        },
+        getSafe() {
+            const mainPigments = this.inks[this.selectedColor].pigments;
+
+            return Object.keys(this.inks).filter((i) => {
+                const subPigments = this.inks[i].pigments;
+
+                let isMatch = true;
+
+                mainPigments.every((mainPigment) => {
+                    if (subPigments.includes(mainPigment)) {
+                        isMatch = false;
+                    }
+
+                    return isMatch;
+                });
+
                 return isMatch;
             });
         },
@@ -210,14 +252,14 @@ export default {
             }
         }
 
-        .avoid-list {
+        .ink-list {
             margin: 2rem 0 0 2.5rem;
 
             @media (min-width: 601px) {
                 width: 75%;
             }
 
-            .avoid-list-inner {
+            .ink-list-inner {
                 margin-top: 0.5rem;
 
                 @media (min-width: 601px) {
@@ -225,7 +267,7 @@ export default {
                     flex-wrap: wrap;
                 }
 
-                .avoid-entry {
+                .ink-entry {
                     margin: 0.5rem 0 0.5rem 1rem;
                 }
             }
@@ -237,7 +279,7 @@ export default {
             }
         }
 
-        .avoid-icon,
+        .ink-icon,
         .pigment-icon {
             height: 1rem;
             vertical-align: middle;
