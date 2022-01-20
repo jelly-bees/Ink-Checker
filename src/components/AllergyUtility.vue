@@ -5,7 +5,7 @@
             <b>Eternal Ink Allergy Checker</b>
             <br/>
             <br/>
-            Select a Color:
+            <span>Select a Color:</span>
             <br/>
 
             <!-- Fancy dropdown template -->
@@ -24,10 +24,9 @@
                 <!-- But instead we can write normal html in this special template tag -->
                 <template #default="{ item }">
                     <div class="option-entry">
-                        <div class="option-sample"
-                            :class="{'option-border': colors[item.value].hex==='#ffffff'}"
-                            :style="{'background-color': colors[item.value].hex}">
-                        </div>
+                        <drop class="list-drop"
+                            :class="{'drop-border': inks[item.value].hex==='#ffffff'}"
+                            :style="{'fill': inks[item.value].hex}" />
                         <div class="option-text">
                             {{item.value}}
                         </div>
@@ -35,43 +34,45 @@
                 </template>
             </el-select-v2>
 
-            <br/>
-
-            <div class="dropdown-result"
-                v-if="selectedColor">
+            <div class="dropdown-result" v-if="selectedColor">
                 <div class="name-container">
-                    <div class="option-sample"
-                        :class="{'option-border': colors[selectedColor].hex==='#ffffff'}"
-                        :style="{'background-color': colors[selectedColor].hex}">
-                    </div>
-                    <div class="name-container-2">
+                    <drop class="selected-drop"
+                        :class="{'drop-border': inks[selectedColor].hex==='#ffffff'}"
+                        :style="{'fill': inks[selectedColor].hex}" />
+                    <div class="name-container-inner">
                         <b>{{selectedColor}}</b> contains the following pigments:<br/>
                     </div>
                 </div>
-                <ul>
-                    <li v-for="pigment in colors[selectedColor].pigments"
+                <div class="pigment-list">
+                    <div class="pigment-entry"
+                        v-for="pigment in inks[selectedColor].pigments"
                         :key="pigment" :value="pigment">
+                        <triangle class="pigment-icon"
+                            :class="{'drop-border': pigments[pigment].hex==='#ffffff'}"
+                            :style="{'fill': pigments[pigment].hex}" />
                         C.I. #{{pigment}}
                         <span>
-                            ({{pigmentAliases[pigment].join(' / ')}})
+                            ({{pigments[pigment].aliases.join(' / ')}})
                         </span>
-                    </li>
-                </ul>
-                <div class="definite-avoid"
+                    </div>
+                </div>
+                <div class="avoid-list"
                     v-if="getDefinitelyAvoid(selectedColor).length">
                     <b>Definitely Avoid</b> (Contains all the above pigments):
-                    <ul>
-                        <div v-for="color in getDefinitelyAvoid(selectedColor)"
+                    <div class="avoid-list-inner">
+                        <div class="avoid-entry"
+                            v-for="color in getDefinitelyAvoid(selectedColor)"
                             :key="color" :value="color">
-                            <li>
-                                {{color}} {{colors[color].pigments}}
-                            </li>
+                            <drop class="avoid-icon"
+                                :class="{'drop-border': inks[color].hex==='#ffffff'}"
+                                :style="{'fill': inks[color].hex}" />
+                            {{color}}
                         </div>
-                    </ul>
+                    </div>
                 </div>
-                <div class="definite-avoid" v-else>
+                <div class="avoid-list" v-else>
                     No known inks share
-                    <b>all {{colors[selectedColor].pigments.length}}</b>
+                    <b>all {{inks[selectedColor].pigments.length}}</b>
                     of these pigments.
                 </div>
             </div>
@@ -91,18 +92,23 @@ import {
     ElSelectV2
 } from 'element-plus';
 
-const colors = require('assets/colors.json');
-const pigmentAliases = require('assets/pigment-aliases.json');
+import Drop from 'assets/drop';
+import Triangle from 'assets/triangle';
+
+const inks = require('assets/inks.json');
+const pigments = require('assets/pigments.json');
 
 export default {
     name: 'allergy-utility',
     components: {
-        [ElSelectV2.name]: ElSelectV2
+        [ElSelectV2.name]: ElSelectV2,
+        [Drop.name]: Drop,
+        [Triangle.name]: Triangle
     },
     data() {
         return {
-            colors,
-            pigmentAliases,
+            inks,
+            pigments,
             colorOptions: [],
             filteredOptions: [],
             selectedColor: ''
@@ -112,8 +118,8 @@ export default {
     beforeMount() {
         // The fancy dropdown demands data in a very specific format
         // You can mostly ignore this
-        Object.keys(colors).forEach((color) =>
-            this.colorOptions.push({label: color, value: color}));
+        Object.keys(this.inks).forEach((ink) =>
+            this.colorOptions.push({label: ink, value: ink}));
 
         this.resetFilteredOptions();
     },
@@ -125,20 +131,20 @@ export default {
             this.filteredOptions = res;
         },
         getDefinitelyAvoid() {
-            const mainPigments = this.colors[this.selectedColor].pigments;
+            const mainPigments = this.inks[this.selectedColor].pigments;
 
             // Iterate over all color names and return a filtered list of all
             // that contain the above pigments.
             // "filter()" expects a boolean return.
-            return Object.keys(this.colors).filter((c) => {
+            return Object.keys(this.inks).filter((i) => {
 
                 // Make sure the color itself isn't included
-                if (c === this.selectedColor) {
+                if (i === this.selectedColor) {
                     return false;
                 }
 
                 // Gather pigments to test for inclusion
-                const subPigments = this.colors[c].pigments;
+                const subPigments = this.inks[i].pigments;
 
                 // Assume a pigment set match until it isn't
                 let isMatch = true;
@@ -168,69 +174,83 @@ export default {
 
 <style lang="scss">
 .allergy-container {
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     margin-left: 1rem;
 
     .ink-dropdown {
         font-size: 1rem;
         font-weight: bold;
         margin: 1rem 1rem 0 1rem;
-        width: 30rem;
+        max-width: 30rem;
+        width: calc(100% - 2rem);
+        min-width: 10rem;
     }
 
-    .option-sample {
-        border-radius: 0.25rem;
-        height: 1.125rem;
-        margin: 0.5rem;
-        width: 1.125rem;
-
-        &.option-border {
-            border: 1px solid black;
-            height: calc(1.125rem - 2px);
-            width: calc(1.125rem - 2px);
-        }
-    }
-
-    .ink-dropdown-options {
-        .option-entry {
-            display: flex !important;
-            flex-direction: row !important;
-
-            .option-text {
-                font-size: 1rem;
-                margin-left: 0.5rem;
-                margin-top: 1px;
-            }
-        }
+    .drop-border {
+        stroke: #000000;
+        stroke-width: 1;
     }
 
     .dropdown-result {
-        margin: 0 1rem 1rem 1rem;
-    }
+        .name-container {
+            display: flex;
+            flex-direction: row;
+            margin: 1rem;
 
-    .name-container {
-        display:flex;
-        flex-direction:row;
-        margin: 1rem;
-    }
+            .selected-drop {
+                height: 2rem;
+                width: 2rem;
+            }
 
-    .name-container-2 {
-        margin: 0.5rem;
-    }
+            .name-container-inner {
+                margin: 0.5rem;
+            }
+        }
 
-    .color-entry,
-    .pigment-entry {
-        margin: 0.5rem 1rem;
+        .avoid-list {
+            margin: 2rem 0 0 2.5rem;
+
+            @media (min-width: 601px) {
+                width: 75%;
+            }
+
+            .avoid-list-inner {
+                margin-top: 0.5rem;
+
+                @media (min-width: 601px) {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .avoid-entry {
+                    margin: 0.5rem 0 0.5rem 1rem;
+                }
+            }
+        }
+
+        .pigment-list {
+            .pigment-entry {
+                margin: 0.5rem 0 0.5rem 2.5rem;
+            }
+        }
+
+        .avoid-icon,
+        .pigment-icon {
+            height: 1rem;
+            vertical-align: middle;
+            width: 1rem;
+        }
     }
 
     .disclaimers {
-        text-align:center;
-        color:#909399;
+        text-align: center;
+        color: #909399;
         padding-bottom: 1rem;
         padding-top: 1rem;
     }
+
 }
 </style>

@@ -1,0 +1,96 @@
+{
+    "11741": {
+        "aliases": [
+            "Pigment Yellow 74"
+        ],
+        "hex": "#f5cd05"
+    },
+    "12315": {
+        "aliases": [
+            "Pigment Red 22"
+        ],
+        "hex": "#b90100"
+    },
+    "12475": {
+        "aliases": [
+            "Pigment Red 170",
+            "Naphthol Red"
+        ],
+        "hex": "#c5010b"
+    },
+    "12477": {
+        "aliases": [
+            "Pigment Red 210"
+        ],
+        "hex": "#9a1c32"
+    },
+    "21095": {
+        "aliases": [
+            "Pigment Yellow 14"
+        ],
+        "hex": "#faca12"
+    },
+    "21108": {
+        "aliases": [
+            "Pigment Yellow 83"
+        ],
+        "hex": "#efa207"
+    },
+    "21160": {
+        "aliases": [
+            "Pigment Orange 16"
+        ],
+        "hex": "#e32f0c"
+    },
+    "51319": {
+        "aliases": [
+            "Pigment Violet 23"
+        ],
+        "hex": "#7e25a5"
+    },
+    "56110": {
+        "aliases": [
+            "Pigment Red 254"
+        ],
+        "hex": "#f60a06"
+    },
+    "73915": {
+        "aliases": [
+            "Pigment Red 122"
+        ],
+        "hex": "#b60042"
+    },
+    "74160": {
+        "aliases": [
+            "Pigment Blue 15",
+            "Phthalocyanine Blue BN"
+        ],
+        "hex": "#242ac0"
+    },
+    "74260": {
+        "aliases": [
+            "Pigment green 7",
+            "Phthalocyanine green G"
+        ],
+        "hex": "#04726f"
+    },
+    "77266": {
+        "aliases": [
+            "Pigment Black 7",
+            "Carbon Black 2"
+        ],
+        "hex": "#000000"
+    },
+    "77491": {
+        "aliases": [
+            "Red Iron Oxide"
+        ],
+        "hex": "#df3821"
+    },
+    "77891": {
+        "aliases": [
+            "Titanium dioxide"
+        ],
+        "hex": "#ffffff"
+    }
+}
