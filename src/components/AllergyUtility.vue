@@ -220,7 +220,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin-left: 1rem;
+    margin: 0 1rem;
 
     .ink-dropdown {
         font-size: 1rem;
@@ -228,7 +228,7 @@ export default {
         margin: 1rem 1rem 0 1rem;
         max-width: 30rem;
         width: calc(100% - 2rem);
-        min-width: 10rem;
+        min-width: 16.5rem;
     }
 
     .drop-border {
@@ -254,21 +254,16 @@ export default {
 
         .ink-list {
             margin: 2rem 0 0 2.5rem;
-
-            @media (min-width: 601px) {
-                width: 75%;
-            }
+            width: calc(100% - 2rem);
 
             .ink-list-inner {
+                display: flex;
+                flex-wrap: wrap;
                 margin-top: 0.5rem;
-
-                @media (min-width: 601px) {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
 
                 .ink-entry {
                     margin: 0.5rem 0 0.5rem 1rem;
+                    width: 13rem;
                 }
             }
         }
