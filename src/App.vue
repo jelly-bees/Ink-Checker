@@ -54,4 +54,8 @@ body,
     }
 }
 
+.el-select-v2__placeholder {
+    color: #606060 !important;
+}
+
 </style>

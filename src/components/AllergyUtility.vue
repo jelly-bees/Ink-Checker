@@ -1,102 +1,129 @@
 <template>
     <div class="allergy-container">
-        <div>
-            <br/>
-            <b>Eternal Ink Allergy Checker</b>
-            <br/>
-            <br/>
-            <span>Select a Color:</span>
-            <br/>
+        <el-backtop :style="{'color': hasBorder(inks[selectedColor]?.hex) ? '#000000' : inks[selectedColor]?.hex}" />
+        <div class="pigment-and-ink">
+            <div class="pigment-zone">
+                <div class="title-bar" :style="{'background-color': inks[selectedColor]?.hex}">
+                    <span>Eternal Ink Allergy Checker</span>
+                </div>
 
-            <!-- Fancy dropdown template -->
-            <el-select-v2
-                class="ink-dropdown"
-                popper-class="ink-dropdown-options"
-                v-model="selectedColor"
-                filterable
-                remote
-                :remote-method="dropdownFilter"
-                :options="filteredOptions"
-                placeholder="Select an Ink Color"
-                @click="resetFilteredOptions">
-
-                <!-- Normally we'd just pop some plain text in here -->
-                <!-- But instead we can write normal html in this special template tag -->
-                <template #default="{ item }">
-                    <div class="option-entry">
-                        <drop class="list-drop"
-                            :class="{'drop-border': inks[item.value].hex==='#ffffff'}"
-                            :style="{'fill': inks[item.value].hex}" />
-                        <div class="option-text">
-                            {{item.value}}
-                        </div>
-                    </div>
-                </template>
-            </el-select-v2>
-
-            <div class="dropdown-result" v-if="selectedColor">
                 <div class="name-container">
-                    <drop class="selected-drop"
-                        :class="{'drop-border': inks[selectedColor].hex==='#ffffff'}"
+                    <drop v-if="selectedColor"
+                        class="selected-drop"
+                        :class="{'drop-border': hasBorder(inks[selectedColor].hex)}"
                         :style="{'fill': inks[selectedColor].hex}" />
-                    <div class="name-container-inner">
-                        <b>{{selectedColor}}</b> contains the following pigments:<br/>
-                    </div>
-                </div>
-                <div class="pigment-list">
-                    <div class="pigment-entry"
-                        v-for="pigment in inks[selectedColor].pigments"
-                        :key="pigment" :value="pigment">
-                        <triangle class="pigment-icon"
-                            :class="{'drop-border': pigments[pigment].hex==='#ffffff'}"
-                            :style="{'fill': pigments[pigment].hex}" />
-                        C.I. #{{pigment}}
-                        <span>
-                            ({{pigments[pigment].aliases.join(' / ')}})
-                        </span>
-                    </div>
+                    <div v-else class="selected-drop"></div>
+
+                    <!-- Fancy dropdown template -->
+                    <el-select-v2
+                        class="ink-dropdown"
+                        popper-class="ink-dropdown-options"
+                        v-model="selectedColor"
+                        filterable
+                        remote
+                        :remote-method="dropdownFilter"
+                        :options="filteredOptions"
+                        placeholder="Select an Ink Color"
+                        @click="resetFilteredOptions">
+
+                        <!-- Normally we'd just pop some plain text in here -->
+                        <!-- But instead we can write normal html in this special template tag -->
+                        <template #default="{ item }">
+                            <div class="option-entry">
+                                <drop class="list-drop"
+                                    :class="{'drop-border': hasBorder(inks[item.value].hex)}"
+                                    :style="{'fill': inks[item.value].hex}" />
+                                <div class="option-text">
+                                    {{item.value}}
+                                </div>
+                            </div>
+                        </template>
+                    </el-select-v2>
+
+                    <span v-if="selectedColor" class="selected-text">
+                        contains the following pigments:
+                    </span>
                 </div>
 
-                <!-- Inks to DEFINITELY avoid -->
-                <div class="ink-list"
-                    v-if="getDefinitelyAvoid().length">
-                    <b>Definitely Avoid</b> (Contains all of the above pigments):
-                    <div class="ink-list-inner">
-                        <div class="ink-entry"
-                            v-for="color in getDefinitelyAvoid()"
-                            :key="color" :value="color">
-                            <drop class="ink-icon"
-                                :class="{'drop-border': inks[color].hex==='#ffffff'}"
-                                :style="{'fill': inks[color].hex}" />
-                            {{color}}
+                <div class="dropdown-result" v-if="selectedColor">
+                    <div class="pigment-list">
+                        <div class="pigment-entry"
+                            v-for="pigment in inks[selectedColor].pigments"
+                            :key="pigment" :value="pigment">
+                            <triangle class="pigment-icon"
+                                :class="{'drop-border': hasBorder(pigments[pigment].hex)}"
+                                :style="{'fill': pigments[pigment].hex}" />
+                            C.I. #{{pigment}}
+                            <span>
+                                ({{pigments[pigment].aliases.join(' / ')}})
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="ink-list" v-else>
-                    No known inks share
-                    <b>all {{inks[selectedColor].pigments.length}}</b>
-                    of these pigments.
-                </div>
+            </div>
 
-                <!-- Completely SAFE inks -->
-                <div class="ink-list"
-                    v-if="getSafe().length">
-                    <b>Safe Inks</b> (Contains none of the above pigments):
-                    <div class="ink-list-inner">
-                        <div class="ink-entry"
-                            v-for="color in getSafe()"
-                            :key="color" :value="color">
-                            <drop class="ink-icon"
-                                :class="{'drop-border': inks[color].hex==='#ffffff'}"
-                                :style="{'fill': inks[color].hex}" />
-                            {{color}}
-                        </div>
-                    </div>
-                </div>
-                <div class="ink-list" v-else>
-                    No known inks lack all
-                    <b>all {{inks[selectedColor].pigments.length}}</b>
-                    of these pigments.
+            <div class="ink-zone" v-if="selectedColor">
+                <div class="dropdown-result">
+                    <el-collapse class="ink-list">
+                        <!-- Inks to DEFINITELY avoid -->
+                        <el-collapse-item :disabled="getDefinitelyAvoid().length === 0" name="1">
+                            <template #title>
+                                <span class="collapse-title"
+                                    v-if="getDefinitelyAvoid().length">
+                                    <span class="collapse-primary">
+                                        Definitely Avoid
+                                    </span>
+                                    <span class="collapse-secondary">
+                                        Contains all of the above pigments
+                                    </span>
+                                </span>
+                                <span class="collapse-title"
+                                    v-else>
+                                    <span class="collapse-secondary">No known inks share</span>
+                                    <span class="collapse-primary">all {{inks[selectedColor].pigments.length}}</span>
+                                    <span class="collapse-secondary">of these pigments.</span>
+                                </span>
+                            </template>
+                            <ink-list :list="getDefinitelyAvoid()" />
+                        </el-collapse-item>
+
+                        <!-- Inks to MAYBE avoid -->
+                        <el-collapse-item v-if="getAvoid().length" name="2">
+                            <template #title>
+                                <span class="collapse-title">
+                                    <span class="collapse-primary">
+                                        Use Caution
+                                    </span>
+                                    <span class="collapse-secondary">
+                                        Contains some of the above pigments
+                                    </span>
+                                </span>
+                            </template>
+                            <ink-list :list="getAvoid()" />
+                        </el-collapse-item>
+
+                        <!-- Completely SAFE inks -->
+                        <el-collapse-item :disabled="getSafe().length === 0" name="3">
+                            <template #title>
+                                <span class="collapse-title" v-if="getSafe().length">
+                                    <span class="collapse-primary">
+                                        Likely Safe
+                                    </span>
+                                    <span class="collapse-secondary">
+                                        Contains none of the above pigments
+                                    </span>
+                                </span>
+                                <span class="collapse-title"
+                                    v-else>
+                                    <span class="collapse-secondary">No known inks lack</span>
+                                    <span class="collapse-primary">all {{inks[selectedColor].pigments.length}}</span>
+                                    <span class="collapse-secondary">of these pigments.</span>
+                                </span>
+                            </template>
+                            <ink-list :list="getSafe()" />
+                        </el-collapse-item>
+                    </el-collapse>
+
                 </div>
             </div>
         </div>
@@ -112,8 +139,13 @@
 
 <script>
 import {
+    ElBacktop,
+    ElCollapse,
+    ElCollapseItem,
     ElSelectV2
 } from 'element-plus';
+
+import InkList from 'components/InkList';
 
 import Drop from 'assets/drop';
 import Triangle from 'assets/triangle';
@@ -124,8 +156,12 @@ const pigments = require('assets/pigments.json');
 export default {
     name: 'allergy-utility',
     components: {
+        [ElBacktop.name]: ElBacktop,
+        [ElCollapse.name]: ElCollapse,
+        [ElCollapseItem.name]: ElCollapseItem,
         [ElSelectV2.name]: ElSelectV2,
         [Drop.name]: Drop,
+        [InkList.name]: InkList,
         [Triangle.name]: Triangle
     },
     data() {
@@ -188,6 +224,18 @@ export default {
                 return isMatch;
             });
         },
+        getAvoid() {
+            const everythingElse = [...this.getSafe(), ...this.getDefinitelyAvoid()];
+
+            return Object.keys(this.inks).filter((i) => {
+                // Make sure the ink itself isn't included
+                if (i === this.selectedColor) {
+                    return false;
+                }
+
+                return !everythingElse.includes(i);
+            });
+        },
         getSafe() {
             const mainPigments = this.inks[this.selectedColor].pigments;
 
@@ -207,6 +255,9 @@ export default {
                 return isMatch;
             });
         },
+        hasBorder(hex) {
+            return hex === '#ffffff';
+        },
         resetFilteredOptions() {
             this.filteredOptions = [...this.colorOptions];
         }
@@ -220,15 +271,14 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin: 0 1rem;
 
-    .ink-dropdown {
-        font-size: 1rem;
-        font-weight: bold;
-        margin: 1rem 1rem 0 1rem;
-        max-width: 30rem;
-        width: calc(100% - 2rem);
-        min-width: 16.5rem;
+    .title-bar {
+        padding: 1rem 0;
+        text-align: center;
+
+        span {
+            font-weight: bold;
+        }
     }
 
     .drop-border {
@@ -236,57 +286,79 @@ export default {
         stroke-width: 1;
     }
 
-    .dropdown-result {
-        .name-container {
-            display: flex;
-            flex-direction: row;
-            margin: 1rem;
+    .name-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 1rem;
 
-            .selected-drop {
-                height: 2rem;
-                width: 2rem;
-            }
-
-            .name-container-inner {
-                margin: 0.5rem;
-            }
+        .selected-drop {
+            height: 2rem;
+            margin: 0.5rem 0.5rem 0 0;
+            width: 2rem;
         }
 
+        .ink-dropdown {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            width: 16rem;
+        }
+
+        .selected-text {
+            font-size: 1rem;
+            margin: 0.65rem 0 0 0.5rem;
+            white-space: nowrap;
+        }
+    }
+
+    .dropdown-result {
         .ink-list {
-            margin: 2rem 0 0 2.5rem;
-            width: calc(100% - 2rem);
-
-            .ink-list-inner {
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 0.5rem;
-
-                .ink-entry {
-                    margin: 0.5rem 0 0.5rem 1rem;
-                    width: 13rem;
-                }
-            }
+            margin: 0 1rem;
         }
 
         .pigment-list {
+            margin-bottom: 1rem;
+
             .pigment-entry {
-                margin: 0.5rem 0 0.5rem 2.5rem;
+                font-size: 0.9rem;
+                margin: 0.5rem 0 0.5rem 1.5rem;
             }
         }
 
-        .ink-icon,
         .pigment-icon {
             height: 1rem;
+            margin-top: -0.2rem;
             vertical-align: middle;
             width: 1rem;
+        }
+
+        .collapse-title {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-size: 1.2rem;
+            line-height: 1.1rem;
+
+            .collapse-primary {
+                font-weight: bold;
+                margin: 0 0.5rem;
+            }
+
+            .collapse-secondary {
+                font-size: 0.9rem;
+                margin: 0 0.5rem;
+                opacity: 0.7;
+            }
         }
     }
 
     .disclaimers {
+        // color: #909399;
+        margin-top: 1rem;
+        opacity: 0.5;
+        padding: 1rem 0.5rem;
         text-align: center;
-        color: #909399;
-        padding-bottom: 1rem;
-        padding-top: 1rem;
     }
 
 }
