@@ -138,7 +138,7 @@
             <br/>
             Not medical advice. Always consult your doctor and your tattoo artist about possible allergic reactions.
             <br/>
-            All information obtained from Eternal Ink Europe: <a href="https://www.eternal-ink.eu/information-safety.php">https://www.eternal-ink.eu/information-safety.php</a>
+            All information obtained January 2022 from Eternal Ink Europe: <a href="https://www.eternal-ink.eu/information-safety.php">https://www.eternal-ink.eu/information-safety.php</a>
         </div>
     </div>
 </template>
@@ -304,7 +304,7 @@ export default {
         }
 
         &.none-selected {
-            font-size: 4rem;
+            font-size: 3rem;
 
             span {
                 cursor: unset;
