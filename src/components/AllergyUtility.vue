@@ -3,33 +3,38 @@
         <el-backtop :style="{'color': hasBorder(inks[selectedColor]?.hex) ? '#000000' : inks[selectedColor]?.hex}" />
         <div class="pigment-and-ink">
             <div class="pigment-zone">
-                <div class="title-bar" :style="{'background-color': inks[selectedColor]?.hex}">
-                    <span>Eternal Ink Allergy Checker</span>
+                <div class="title-bar"
+                    :class="{'none-selected': !selectedColor}"
+                    :style="{'background-color': inks[selectedColor]?.hex, 'color': selectColorForBg(inks[selectedColor]?.hex)}">
+                    <span @click="selectedColor = ''">Eternal Ink Allergy Checker</span>
                 </div>
 
                 <div class="name-container">
                     <drop v-if="selectedColor"
                         class="selected-drop"
                         :class="{'drop-border': hasBorder(inks[selectedColor].hex)}"
-                        :style="{'fill': inks[selectedColor].hex}" />
+                        :style="{'fill': inks[selectedColor].hex}"
+                        @click="inkSelectorVisible = true" />
                     <div v-else class="selected-drop"></div>
 
-                    <!-- Fancy dropdown template -->
-                    <el-select-v2
-                        class="ink-dropdown"
-                        popper-class="ink-dropdown-options"
-                        v-model="selectedColor"
-                        filterable
-                        remote
-                        :remote-method="dropdownFilter"
-                        :options="filteredOptions"
-                        placeholder="Select an Ink Color"
-                        @click="resetFilteredOptions">
+                    <span class="selected-name"
+                        :class="{'none-selected': !selectedColor}"
+                        @click="inkSelectorVisible = true">
+                        {{selectedColor || 'Click Here to Select an Ink'}}
+                    </span>
 
-                        <!-- Normally we'd just pop some plain text in here -->
-                        <!-- But instead we can write normal html in this special template tag -->
-                        <template #default="{ item }">
-                            <div class="option-entry">
+                    <el-dialog v-model="inkSelectorVisible"
+                        :before-close="() => { inkFilter = ''; inkSelectorVisible = false; dropdownFilter(inkFilter); }"
+                        title="Select an Ink" width="80%" top="5vh">
+                        <el-input class="ink-filter" v-model="inkFilter"
+                            placeholder="Filter by name" clearable
+                            @input="dropdownFilter(inkFilter)">
+                        </el-input>
+                        <div class="ink-dropdown-options">
+                            <div class="option-entry"
+                                v-for="item in filteredOptions"
+                                :key="item.value"
+                                @click="selectedColor = item.value; inkSelectorVisible = false;">
                                 <drop class="list-drop"
                                     :class="{'drop-border': hasBorder(inks[item.value].hex)}"
                                     :style="{'fill': inks[item.value].hex}" />
@@ -37,8 +42,9 @@
                                     {{item.value}}
                                 </div>
                             </div>
-                        </template>
-                    </el-select-v2>
+                            <span class="no-data" v-if="filteredOptions.length === 0">Ink(s) not found</span>
+                        </div>
+                    </el-dialog>
 
                     <span v-if="selectedColor" class="selected-text">
                         contains the following pigments:
@@ -142,7 +148,8 @@ import {
     ElBacktop,
     ElCollapse,
     ElCollapseItem,
-    ElSelectV2
+    ElDialog,
+    ElInput
 } from 'element-plus';
 
 import InkList from 'components/InkList';
@@ -159,7 +166,8 @@ export default {
         [ElBacktop.name]: ElBacktop,
         [ElCollapse.name]: ElCollapse,
         [ElCollapseItem.name]: ElCollapseItem,
-        [ElSelectV2.name]: ElSelectV2,
+        [ElDialog.name]: ElDialog,
+        [ElInput.name]: ElInput,
         [Drop.name]: Drop,
         [InkList.name]: InkList,
         [Triangle.name]: Triangle
@@ -170,6 +178,8 @@ export default {
             pigments,
             colorOptions: [],
             filteredOptions: [],
+            inkFilter: '',
+            inkSelectorVisible: false,
             selectedColor: ''
         };
     },
@@ -256,10 +266,22 @@ export default {
             });
         },
         hasBorder(hex) {
-            return hex === '#ffffff';
+            if (!hex) {
+                return false;
+            }
+
+            return this.selectColorForBg(hex) === '#000';
         },
         resetFilteredOptions() {
             this.filteredOptions = [...this.colorOptions];
+        },
+        selectColorForBg(bgColor = '#ffffff') {
+            const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+            const r = parseInt(color.substring(0, 2), 16); // hexToR
+            const g = parseInt(color.substring(2, 4), 16); // hexToG
+            const b = parseInt(color.substring(4, 6), 16); // hexToB
+
+            return ((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186 ? '#000' : '#fff';
         }
     }
 }
@@ -277,7 +299,16 @@ export default {
         text-align: center;
 
         span {
+            cursor: pointer;
             font-weight: bold;
+        }
+
+        &.none-selected {
+            font-size: 4rem;
+
+            span {
+                cursor: unset;
+            }
         }
     }
 
@@ -293,21 +324,28 @@ export default {
         margin: 1rem;
 
         .selected-drop {
+            cursor: pointer;
             height: 2rem;
-            margin: 0.5rem 0.5rem 0 0;
+            margin: 0.1rem 0.5rem 0 0;
             width: 2rem;
         }
 
-        .ink-dropdown {
-            font-size: 1rem;
+        .selected-name {
+            cursor: pointer;
+            font-size: 2rem;
             font-weight: bold;
-            margin-top: 0.5rem;
-            width: 16rem;
+
+            &.none-selected {
+                color: gray;
+                margin-top: -2rem;
+                text-align: center;
+                width: 100%;
+            }
         }
 
         .selected-text {
             font-size: 1rem;
-            margin: 0.65rem 0 0 0.5rem;
+            margin: 1rem 0 0 0.5rem;
             white-space: nowrap;
         }
     }
